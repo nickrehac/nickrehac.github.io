@@ -1,0 +1,167 @@
+div.projectCard {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    background: deepskyblue;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bolder;
+    width: 13em;
+    /*margin: 1em;*/
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: grey .1em .1em 0.5em;
+    z-index: 1;
+
+    animation: popIn 2s;
+}
+a.projectCard {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+img.projectCard {
+    width: 3em;
+    height: 3em;
+}
+.projectCard {
+    font-size: large;
+    transition-property: transform, box-shadow, background;
+    transition-duration: .17s;
+    transition-timing-function: ease-in-out;
+}
+div.projectCard:hover {
+    transform: scale(1.1) rotate3d(1, 0, 1, 3deg) translateY(-1em);
+    box-shadow: grey 1em 1em 1em;
+    z-index: 2;
+}
+div.projectCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 20% 20%, lightblue, deepskyblue);
+    opacity: 0;
+    transition: opacity .17s ease-in-out;
+    z-index: -1;
+    border-radius: 1em;
+}
+div.projectCard:hover::before {
+    opacity: 1;
+    scale: 1.01;
+}
+.projectContainer > div {
+    display: inline-grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-gap: 1.5em;
+    width: fit-content;
+}
+div.projectContainer {
+    display: inline-block;
+
+    text-align: center;
+    height: min-content;
+
+    animation: slideIn 1.5s;
+}
+.minesweeperContainer {
+    display: inline-block;
+    animation: slideIn 2s;
+}
+div.homepage {
+    display: flex;
+    flex-wrap: wrap;
+
+    height: 100vh;
+
+    align-items: center;
+    justify-content: space-around;
+
+    font-family: "Roboto Mono", sans-serif;
+    font-weight: bold;
+    font-size: xx-large;
+}
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em;
+    height: max-content;
+    width: fit-content;
+
+    animation: slideIn 1s;
+}
+.profile img {
+    width: 5em;
+    height: 5em;
+    border-radius: 0.5em;
+    border-color: lightskyblue;
+    border-style: solid;
+    margin-top: 0.5em;
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        translate: 0 -50vh;
+    }
+    50% {
+        opacity: 100;
+        translate: 0 5vh;
+    }
+    100% {
+        opacity: 100;
+        translate: 0 0;
+    }
+}
+
+@media(max-aspect-ratio: 3/2) {
+    div.homepage {
+        flex-direction: column;
+        padding: 0;
+        height: fit-content;
+    }
+    .minesweeperContainer {
+        margin-top: 3em;
+    }
+    .projectContainer > div{
+        grid-template-columns: max-content;
+    }
+    @keyframes slideIn {
+        0% {
+            opacity: 0;
+            translate: -50vw;
+        }
+        50% {
+            opacity: 100;
+            translate: 5vw;
+        }
+        100% {
+            opacity: 100;
+            translate: 0 0;
+        }
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        scale: 0;
+    }
+    30% {
+        opacity: 0;
+        scale: 0;
+    }
+    75% {
+        opacity: 100;
+        scale: 1.05 ;
+    }
+    100% {
+        opacity: 100;
+        scale: 1;
+    }
+}
