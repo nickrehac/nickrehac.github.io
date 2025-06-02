@@ -288,7 +288,14 @@ export default function FluidCanvas() {
         let resizeHandler = () => {
             setWidth(innerWidth)
             setHeight(innerHeight)
+            ctx.canvas.width = innerWidth
+            ctx.canvas.height = innerHeight
+            sim.current.draw(ctx)
             sim.current.resize(innerWidth, innerHeight)
+        }
+
+        let canvasResizeHandler = () => {
+
         }
 
         let mouseMoveHandler = (e) => {
@@ -327,7 +334,7 @@ export default function FluidCanvas() {
         }, 50)
 
 
-        //console.log("registered handlers")
+        console.log("registered handlers")
 
         return () => {
             window.removeEventListener("mousemove", mouseMoveHandler)
@@ -335,9 +342,9 @@ export default function FluidCanvas() {
             window.removeEventListener("touchmove", touchMoveHandler)
             clearInterval(updater)
 
-            //console.log("deregistered handlers")
+            console.log("deregistered handlers")
         }
-    })
+    }, [])
 
     return <canvas ref={canvas} width={width} height={height} className="fluidCanvas"/>
 }
