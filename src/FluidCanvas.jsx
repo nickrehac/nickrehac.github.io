@@ -247,6 +247,7 @@ function FluidSim (canvasWidth, canvasHeight) {
 
 export default function FluidCanvas() {
     const canvas = useRef(null)
+    const prevTouches = useRef([])
     const [width, setWidth] = useState(window.innerWidth)
     const [height, setHeight] = useState(window.innerHeight)
     const [sim, setSim] = useState(new FluidSim(width, height))
@@ -266,8 +267,22 @@ export default function FluidCanvas() {
             sim.applyVelocity(e.x, e.y, e.movementX, e.movementY)
         }
 
+        let touchMoveHandler = (e) => {
+            for(let t of e.touches) {
+                let prevTouch = prevTouches.current.find((pt) => pt.identifier === t.identifier)
+                if(prevTouch === undefined) {
+                    prevTouches.current.push(t)
+                    continue
+                }
+                let movementX = t.clientX - prevTouch.clientX
+                let movementY = t.clientY - prevTouch.clientY
+                sim.applyVelocity(t.clientX, t.clientY, movementX, movementY)
+            }
+        }
+
         window.addEventListener("mousemove", mouseMoveHandler)
         window.addEventListener("resize", resizeHandler)
+        window.addEventListener("touchmove", touchMoveHandler)
 
         let updater = setInterval(() => {
             let start = Date.now()
@@ -289,6 +304,7 @@ export default function FluidCanvas() {
         return () => {
             window.removeEventListener("mousemove", mouseMoveHandler)
             window.removeEventListener("resize", resizeHandler)
+            window.removeEventListener("touchmove", touchMoveHandler)
             clearInterval(updater)
 
             //console.log("deregistered handlers")
