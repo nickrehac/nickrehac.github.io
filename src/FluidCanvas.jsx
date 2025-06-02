@@ -243,14 +243,42 @@ function FluidSim (canvasWidth, canvasHeight) {
 
         this.cells = newCells
     }
+
+    this.resize = function(canvasWidth, canvasHeight) {
+        let newWidth = Math.ceil(canvasWidth / cellSize)
+        let newHeight = Math.ceil(canvasHeight / cellSize)
+
+        let newCells = []
+
+        for(let y = 0; y < newHeight && y < this.height; y++) {
+            let newRow = []
+            for(let x = 0; x < newWidth && x < this.width; x++) {
+                newRow.push(this.cells[y][x])
+            }
+            for(let x = 0; x < newWidth - this.width; x++) {
+                newRow.push(new Cell())
+            }
+            newCells.push(newRow)
+        }
+        for(let y = 0; y < newHeight - this.height; y++) {
+            let newRow = []
+            for(let x = 0; x < newWidth; x++) {
+                newRow.push(new Cell())
+            }
+            newCells.push(newRow)
+        }
+        this.cells = newCells
+        this.height = newHeight
+        this.width = newWidth
+    }
 }
 
 export default function FluidCanvas() {
     const canvas = useRef(null)
     const prevTouches = useRef([])
-    const [width, setWidth] = useState(window.innerWidth)
-    const [height, setHeight] = useState(window.innerHeight)
-    const [sim, setSim] = useState(new FluidSim(width, height))
+    const [width, setWidth] = useState(innerWidth)
+    const [height, setHeight] = useState(innerHeight)
+    const sim = useRef(new FluidSim(width, height))
 
     useEffect(() => {
         if(canvas === null) return;
@@ -258,13 +286,13 @@ export default function FluidCanvas() {
         let ctx = curCanvas.getContext('2d')
 
         let resizeHandler = () => {
-            setWidth(window.innerWidth)
-            setHeight(window.innerHeight)
-            setSim(new FluidSim(window.innerWidth, window.innerHeight))
+            setWidth(innerWidth)
+            setHeight(innerHeight)
+            sim.current.resize(innerWidth, innerHeight)
         }
 
         let mouseMoveHandler = (e) => {
-            sim.applyVelocity(e.x, e.y, e.movementX, e.movementY)
+            sim.current.applyVelocity(e.x, e.y, e.movementX, e.movementY)
         }
 
         let touchMoveHandler = (e) => {
@@ -276,7 +304,7 @@ export default function FluidCanvas() {
                 }
                 let movementX = t.clientX - prevTouch.clientX
                 let movementY = t.clientY - prevTouch.clientY
-                sim.applyVelocity(t.clientX, t.clientY, movementX, movementY)
+                sim.current.applyVelocity(t.clientX, t.clientY, movementX, movementY)
             }
         }
 
@@ -286,15 +314,15 @@ export default function FluidCanvas() {
 
         let updater = setInterval(() => {
             let start = Date.now()
-            sim.correctDivergence()
-            sim.advect(0.05)
-            sim.correctDivergence()
-            sim.setBoundary()
-            sim.draw(ctx)
+            sim.current.correctDivergence()
+            sim.current.advect(0.05)
+            sim.current.correctDivergence()
+            sim.current.setBoundary()
+            sim.current.draw(ctx)
             let end = Date.now()
             let duration = end-start
-            if(duration > 50 && sim.solverSteps > 3) sim.solverSteps--
-            if(duration < 30) sim.solverSteps++
+            if(duration > 50 && sim.current.solverSteps > 3) sim.current.solverSteps--
+            if(duration < 30) sim.current.solverSteps++
             //console.log("duration: " + duration + "  solveSteps: " + sim.solverSteps)
         }, 50)
 
@@ -309,7 +337,7 @@ export default function FluidCanvas() {
 
             //console.log("deregistered handlers")
         }
-    }, [sim])
+    })
 
     return <canvas ref={canvas} width={width} height={height} className="fluidCanvas"/>
 }
