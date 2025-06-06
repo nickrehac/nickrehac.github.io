@@ -1,0 +1,101 @@
+.projectCardScaffold {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 15em;
+    height: 8em;
+}
+.projectCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    text-align: center;
+    background: deepskyblue;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bolder;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: grey .1em .1em 0.5em;
+    z-index: 1;
+
+    animation: popIn 2s;
+
+    font-size: large;
+    transition-property: transform, box-shadow, background, top, left, width, height, border-radius;
+    transition-duration: .17s;
+    transition-timing-function: ease-in-out;
+}
+.projectCard > img{
+    width: 3em;
+    height: 3em;
+}
+.projectCardHoverable:hover {
+    transform: scale(1.1) rotate3d(1, 0, 1, 3deg) translateY(-1em);
+    box-shadow: grey 1em 1em 1em;
+    z-index: 2;
+
+    cursor: pointer;
+
+}
+.projectCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 20% 20%, lightblue, deepskyblue);
+    opacity: 0;
+    transition: opacity .17s ease-in-out;
+    z-index: -1;
+    border-radius: 1em;
+}
+.projectCardHoverable:hover::before {
+    opacity: 1;
+    scale: 1.01;
+}
+
+.backButton {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    animation: popIn 0.5s;
+}
+
+.innerContent {
+    width: 0;
+    height: 0;
+    box-sizing: border-box;
+    padding: 0;
+    font-size: 3em;
+
+    overflow: hidden;
+
+    transition-property: width, height, padding;
+    transition-duration: 0.75s;
+}
+
+@keyframes popIn {
+    0% {
+        scale: 0;
+    }
+    30% {
+        scale: 0;
+    }
+    75% {
+        scale: 1.05 ;
+    }
+    100% {
+        scale: 1;
+    }
+}

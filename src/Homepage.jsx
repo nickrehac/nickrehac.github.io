@@ -4,48 +4,74 @@ import placeholder from "./assets/react.svg"
 import Minesweeper from "./minesweeper/Minesweeper.jsx";
 import profilePic from "./assets/1000007292.jpg"
 
+import ProjectCard from "./projects/ProjectCard";
+import {useState} from "react";
+import Chess from "./projects/Chess.jsx";
+import Compression from "./projects/Compression.jsx";
+import AsciiGL from "./projects/AsciiGL.jsx";
+import NMS from "./projects/NMS.jsx";
+import FluidCanvas from "./FluidCanvas.jsx";
+
 const projects = [
-    ["Chess", placeholder,"Chess"],
-    ["File Compression", placeholder,"Compression"],
-    ["AsciiGL", placeholder,"AsciiGL"],
-    ["No Man's Sky Companion App", placeholder,"NMS"]
+    ["Chess", placeholder, <Chess/>],
+    ["File Compression", placeholder, <Compression/>],
+    ["AsciiGL", placeholder, <AsciiGL/>],
+    ["No Man's Sky Companion App", placeholder, <NMS/>]
 ]
 function Homepage() {
-    return <div className={styles.homepage}>
-        <div className={styles.profile}>
+    const [hideExtras, setHideExtras] = useState(false)
+
+    let fluidElement
+    let profileElement
+    let minesweeperElement
+
+    if(!hideExtras) {
+        fluidElement = <FluidCanvas/>
+
+        profileElement = <div className={styles.profile}>
             Nicholas Rehac
             <br/>
             <br/>
             <img src={profilePic}/>
         </div>
-        <div className={"card " + styles.projectContainer}>
-            Projects
-            <br/>
-            <br/>
-            <div>
-                { projects.map((it, index) => (
-                    <ProjectCard
-                        name = { it[0] }
-                        img = { it[1] }
-                        href = { it[2] }
-                        key = { index }
-                    />
-                ))}
-            </div>
-        </div>
-        <div className={styles.minesweeperContainer}>
+
+        minesweeperElement = <div className={styles.minesweeperContainer}>
             <Minesweeper/>
         </div>
-    </div>
+    }
+
+    return <>
+        {fluidElement}
+        <div className={styles.homepage}>
+            {profileElement}
+            <div className={"card " + styles.projectContainer}>
+                Projects
+                <br/>
+                <br/>
+                <div>
+                    {projects.map((it, index) => (
+                        <ProjectCard
+                            name={it[0]}
+                            img={it[1]}
+                            //open={openProject === index}
+                            onUpdate={(state) => {
+                                if (state === "open") {
+                                    setHideExtras(true)
+                                } else if (state === "closing") {
+                                    setHideExtras(false)
+                                }
+                            }}
+                            key={index}
+                        >
+                            {it[2]}
+                        </ProjectCard>
+                    ))}
+                </div>
+            </div>
+            {minesweeperElement}
+        </div>
+    </>
 }
 
-function ProjectCard({name, img, href}) {
-    return <div className={styles.projectCard}>
-        <a href={href} className={styles.projectCard}/>
-        {name}
-        <br/>
-        <img src={img} alt="" className={styles.projectCard}/>
-    </div>
-}
 
 export default Homepage;
