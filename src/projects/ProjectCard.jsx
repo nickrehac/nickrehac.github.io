@@ -20,16 +20,16 @@ export default function ProjectCard({name, img, children, onUpdate}) {
 
     useEffect(updateScaffold, [])
 
-    const [animState, setAnimState] = useState("popIn")
+    const [animState, setAnimState] = useState("closed")
 
     const open = animState === "open"
     const opening = animState === "opening"
     const closing = animState === "closing"
     const closed = animState === "closed"
-    const popIn = animState === "popIn"
+    const reattaching = animState === "reattaching"
 
     let projectCardStyle = styles.projectCard
-    if(closed || popIn) projectCardStyle += " " + styles.projectCardHoverable
+    if(closed) projectCardStyle += " " + styles.projectCardHoverable
 
     let manualCardStyle = {}
     let manualInnerStyle = {}
@@ -53,7 +53,8 @@ export default function ProjectCard({name, img, children, onUpdate}) {
                 position: "fixed",
                 top: 0,
                 left: 0,
-                transitionDuration: "0s"
+                transitionDuration: "0s",
+                overflow: "scroll"
             }
         }
         manualInnerStyle = {
@@ -72,10 +73,11 @@ export default function ProjectCard({name, img, children, onUpdate}) {
             transitionDuration: ANIM_DURATION + "s"
         }
     }
-    if(closed) {
+    if(reattaching) {
         manualCardStyle = {
             transitionDuration: "0s"
         }
+        setTimeout(() => setAnimState("closed"),50)
     }
 
     let backButton
@@ -86,7 +88,7 @@ export default function ProjectCard({name, img, children, onUpdate}) {
                 setAnimState("closing")
                 onUpdate("closing")
                 setTimeout(() => {
-                    setAnimState("closed")
+                    setAnimState("reattaching")
                 }, ANIM_DURATION * 1000)
                 setTimeout(updateScaffold, 10)
             }}
@@ -98,7 +100,7 @@ export default function ProjectCard({name, img, children, onUpdate}) {
     return <div className={styles.projectCardScaffold} ref={card}>
         <div
             className={projectCardStyle}
-            onClick={() => { if (closed || popIn) {
+            onClick={() => { if (closed) {
                 updateScaffold()
                 setAnimState("opening")
                 onUpdate("opening")
