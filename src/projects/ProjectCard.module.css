@@ -1,10 +1,9 @@
-
 .projectCardScaffold {
     position: relative;
     top: 0;
     left: 0;
-    width: 15em;
-    height: 8em;
+    width: 20em;
+    height: 10em;
 }
 .projectCard {
     position: absolute;
@@ -14,6 +13,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    overflow: hidden;
 
     box-sizing: border-box;
 
@@ -32,13 +33,13 @@
     animation: popIn 2s;
 
     font-size: large;
-    transition-property: transform, box-shadow, background, top, left, width, height, border-radius;
+    transition-property: transform, box-shadow, background, top, left, width, height, border-radius, font-size;
     transition-duration: .17s;
     transition-timing-function: ease-in-out;
 }
 .projectCard > img{
-    width: 3em;
-    height: 3em;
+    width: auto;
+    height: 6em;
 }
 .projectCardHoverable:hover {
     transform: scale(1.1) rotate3d(1, 0, 1, 3deg) translateY(-1em);
@@ -72,7 +73,7 @@
     left: 5%;
     animation: popIn 0.5s;
     padding: 0.5em;
-    font-size: 1em;
+    font-size: large;
     border-radius: 0.5em;
     border: none;
     background: white;
@@ -82,16 +83,19 @@
 }
 
 .innerContent {
-    width: 0;
+    width: 100%;
     height: 0;
     box-sizing: border-box;
     padding: 0;
-    font-size: 3em;
+
+    opacity: 0;
+
+    flex-shrink: 0;
 
     overflow: hidden;
 
-    transition-property: width, height, padding;
-    transition-duration: 1s;
+    transition-property: width, height, padding, opacity;
+    transition-duration: 0.75s;
 }
 
 @keyframes popIn {

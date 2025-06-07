@@ -35,6 +35,7 @@ export default function ProjectCard({name, img, children, onUpdate}) {
     let manualInnerStyle = {}
     if ((open || opening) && card.current !== null) {
         manualCardStyle = {
+            fontSize: "xxx-large",
             width: "100vw",
             height: "100vh",
             zIndex: 5,
@@ -45,7 +46,13 @@ export default function ProjectCard({name, img, children, onUpdate}) {
                 ...manualCardStyle,
                 top: -scaffold.y + "px",
                 left: -scaffold.x + "px",
-                transitionDuration: ANIM_DURATION + "s"
+                transitionDuration: ANIM_DURATION + "s",
+                overflow: "hidden"
+            }
+            manualInnerStyle = {
+                width: "100%",
+                height: "100%",
+                opacity: 1
             }
         } else {
             manualCardStyle = {
@@ -56,11 +63,13 @@ export default function ProjectCard({name, img, children, onUpdate}) {
                 transitionDuration: "0s",
                 overflow: "scroll"
             }
+            manualInnerStyle = {
+                width: "100%",
+                height: "fit-content",
+                opacity: 1
+            }
         }
-        manualInnerStyle = {
-            width: "100%",
-            height: "100%",
-        }
+
     }
     if(closing && card.current !== null) {
         manualCardStyle = {
@@ -71,6 +80,9 @@ export default function ProjectCard({name, img, children, onUpdate}) {
             height: scaffold.height,
             zIndex: 5,
             transitionDuration: ANIM_DURATION + "s"
+        }
+        manualInnerStyle = {
+            height: "100%"
         }
     }
     if(reattaching) {
