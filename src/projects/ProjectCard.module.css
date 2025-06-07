@@ -1,3 +1,4 @@
+
 .projectCardScaffold {
     position: relative;
     top: 0;
@@ -70,6 +71,14 @@
     top: 5%;
     left: 5%;
     animation: popIn 0.5s;
+    padding: 0.5em;
+    font-size: 1em;
+    border-radius: 0.5em;
+    border: none;
+    background: white;
+}
+.backButton:hover {
+    background: #E0E0FF;
 }
 
 .innerContent {
@@ -82,7 +91,7 @@
     overflow: hidden;
 
     transition-property: width, height, padding;
-    transition-duration: 0.75s;
+    transition-duration: 1s;
 }
 
 @keyframes popIn {
