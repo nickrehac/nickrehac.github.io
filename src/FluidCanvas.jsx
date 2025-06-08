@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react"
 const cellSize = 15
 const pullCoefficient = cellSize
 const drawLines = false
-const initSolverSteps = 5
+const initSolverSteps = 3
 
 const cold = [250,250,250]
 const medium = [0, 190, 255]
@@ -328,7 +328,7 @@ export default function FluidCanvas() {
             sim.current.draw(ctx)
             let end = Date.now()
             let duration = end-start
-            if(duration > 50 && sim.current.solverSteps > 3) sim.current.solverSteps--
+            if(duration > 50 && sim.current.solverSteps > 1) sim.current.solverSteps--
             if(duration < 30) sim.current.solverSteps++
             //console.log("duration: " + duration + "  solveSteps: " + sim.solverSteps)
         }, 50)
