@@ -1,0 +1,33 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+    text-align: left;
+}
+.paragraph {
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+.row {
+    flex: 1 1 8px;
+    display: flex;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+.horizontalImage {
+    width: 20%;
+    height: auto;
+    margin: 0 1em 0 1em;
+    border-radius: 0.5em;
+}
+
+@media (max-aspect-ratio: 3/2) {
+    .row {
+        flex-wrap: wrap;
+    }
+    .horizontalImage {
+        width: 100%;
+        margin: 1em 0 1em 0;
+    }
+}
