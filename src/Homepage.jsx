@@ -1,7 +1,9 @@
 import styles from "./Homepage.module.css"
 
 import placeholder from "./assets/react.svg"
-import Minesweeper from "./minesweeper/Minesweeper.jsx";
+import NMSLogo from "./assets/NMSLogo.webp"
+import fish from "./assets/fish.png"
+
 import profilePic from "./assets/1000007292.jpg"
 
 import ProjectCard from "./projects/ProjectCard";
@@ -11,12 +13,13 @@ import Compression from "./projects/Compression.jsx";
 import AsciiGL from "./projects/AsciiGL.jsx";
 import NMS from "./projects/NMS.jsx";
 import FluidCanvas from "./FluidCanvas.jsx";
+import Minesweeper from "./minesweeper/Minesweeper.jsx";
 
 const projects = [
     ["Chess", placeholder, <Chess/>],
     ["File Compression", placeholder, <Compression/>],
-    ["AsciiGL", placeholder, <AsciiGL/>],
-    ["No Man's Sky Companion App", placeholder, <NMS/>]
+    ["AsciiGL", fish, <AsciiGL/>],
+    ["No Man's Sky Companion App", NMSLogo, <NMS/>]
 ]
 function Homepage() {
     const [hideExtras, setHideExtras] = useState(false)
