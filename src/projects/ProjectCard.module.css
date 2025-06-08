@@ -38,8 +38,11 @@
     transition-timing-function: ease-in-out;
 }
 .projectCard > img{
-    width: auto;
+    max-width: 100%;
+    margin-top: 0.5em;
+    width: 15em;
     height: 6em;
+    object-fit: contain;
 }
 .projectCardHoverable:hover {
     transform: scale(1.1) rotate3d(1, 0, 1, 3deg) translateY(-1em);
@@ -110,5 +113,16 @@
     }
     100% {
         scale: 1;
+    }
+}
+
+@media (max-aspect-ratio: 3/2) {
+    .projectCardScaffold {
+        width: 15em;
+        height: 10em;
+    }
+    .projectCard > img {
+        width: 10em;
+        height: 5em;
     }
 }
