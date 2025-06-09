@@ -6,6 +6,7 @@
     padding: 0 5em 0 5em;
 }
 .paragraph {
+    text-indent: 2em;
     display: inline-block;
     width: auto;
     height: auto;
