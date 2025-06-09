@@ -1,6 +1,6 @@
 function Chess() {
     return <>
-        WOWIE CHESSSS
+        PLACEHOLDER
     </>
 }
 
