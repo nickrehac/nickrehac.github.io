@@ -16,10 +16,10 @@ import FluidCanvas from "./FluidCanvas.jsx";
 import Minesweeper from "./minesweeper/Minesweeper.jsx";
 
 const projects = [
-    ["Chess", placeholder, <Chess/>],
-    ["File Compression", placeholder, <Compression/>],
-    ["AsciiGL", fish, <AsciiGL/>],
-    ["No Man's Sky Companion App", NMSLogo, <NMS/>]
+    ["Chess", placeholder, Chess],
+    ["File Compression", placeholder, Compression],
+    ["AsciiGL", fish, AsciiGL],
+    ["No Man's Sky Companion App", NMSLogo, NMS]
 ]
 function Homepage() {
     const [hideExtras, setHideExtras] = useState(false)
@@ -65,9 +65,8 @@ function Homepage() {
                                 }
                             }}
                             key={index}
-                        >
-                            {it[2]}
-                        </ProjectCard>
+                            Content={it[2]}
+                        />
                     ))}
                 </div>
             </div>

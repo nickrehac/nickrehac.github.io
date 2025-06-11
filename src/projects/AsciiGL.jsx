@@ -7,8 +7,8 @@ import pixelAndVertInfo from "../assets/PixelAndVertInfo.png"
 import clientVertexShader from "../assets/clientVertexShader.png"
 import clientFragShader from "../assets/clientFragShader.png"
 
-export default function AsciiGL() {
-    return <div className={styles.content}>
+export default function AsciiGL({devMode}) {
+    if(devMode) return <div className={styles.content}>
         <div className={styles.row}>
             <img
                 src={fishAnimatedReres}
@@ -84,5 +84,8 @@ export default function AsciiGL() {
                 style={{flex: "2 0"}}
             />
         </div>
+    </div>
+    else return <div className={styles.content}>
+        simple mode
     </div>
 }

@@ -1,12 +1,14 @@
 import styles from "./ProjectCard.module.css";
 import {useEffect, useRef, useState} from "react";
+import Switch from "./Switch.jsx";
 
 const ANIM_DURATION = .75
 
-export default function ProjectCard({name, img, children, onUpdate}) {
+export default function ProjectCard({name, img, Content, onUpdate}) {
     let card = useRef(null);
 
     let [scaffold, setScaffold] = useState({x: 0, y: 0, width: 0, height: 0})
+    const [devMode, setDevMode] = useState(false)
 
     function updateScaffold() {
         let bRect = card.current.getBoundingClientRect()
@@ -93,6 +95,7 @@ export default function ProjectCard({name, img, children, onUpdate}) {
     }
 
     let backButton
+    let codeSwitch
     if(open) {
         backButton = <button
             className={styles.backButton} onClick={() => {
@@ -107,6 +110,8 @@ export default function ProjectCard({name, img, children, onUpdate}) {
         >
             Back
         </button>
+
+        codeSwitch = <Switch onClick={() => {setDevMode(!devMode)}} active={devMode}/>
     }
 
     return <div className={styles.projectCardScaffold} ref={card}>
@@ -124,10 +129,11 @@ export default function ProjectCard({name, img, children, onUpdate}) {
             style={manualCardStyle}
         >
             {backButton}
+            {codeSwitch}
             {name}
             <img src={img} alt=""/>
             <div className={styles.innerContent} style={manualInnerStyle}>
-                {children}
+                <Content devMode={devMode}/>
             </div>
         </div>
     </div>
