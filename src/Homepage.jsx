@@ -1,8 +1,9 @@
 import styles from "./Homepage.module.css"
 
-import placeholder from "./assets/react.svg"
+import whiteQueen from "./assets/whitequeen.svg"
 import NMSLogo from "./assets/NMSLogo.webp"
 import fish from "./assets/fish.png"
+import compressionLogo from "./assets/compressionLogo.svg"
 
 import profilePic from "./assets/1000007292.jpg"
 
@@ -16,8 +17,8 @@ import FluidCanvas from "./FluidCanvas.jsx";
 import Minesweeper from "./minesweeper/Minesweeper.jsx";
 
 const projects = [
-    ["Chess", placeholder, Chess],
-    ["File Compression", placeholder, Compression],
+    ["Chess", whiteQueen, Chess],
+    ["File Compression", compressionLogo, Compression],
     ["AsciiGL", fish, AsciiGL],
     ["No Man's Sky Companion App", NMSLogo, NMS]
 ]
