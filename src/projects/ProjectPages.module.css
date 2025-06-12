@@ -5,20 +5,21 @@
     text-align: left;
     padding: 0 5em 0 5em;
 }
-.paragraph {
-    text-indent: 2em;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    flex: 2 1;
-}
+
 .row {
     flex: 1 1 8px;
     display: flex;
     margin-top: 2em;
     margin-bottom: 2em;
 }
-.horizontalImage {
+.row > p {
+    text-indent: 2em;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    flex: 2 1;
+}
+.row > img {
     width: 10%;
     height: auto;
     object-fit: contain;
@@ -34,7 +35,7 @@
     .content {
         padding: 0;
     }
-    .horizontalImage {
+    .row > img {
         width: 100%;
         margin: 1em 0 1em 0;
     }
