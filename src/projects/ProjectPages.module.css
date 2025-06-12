@@ -11,6 +11,7 @@
     display: flex;
     margin-top: 2em;
     margin-bottom: 2em;
+    gap: 1em;
 }
 .row > p {
     text-indent: 2em;
@@ -21,9 +22,8 @@
 }
 .row > img {
     width: 10%;
-    height: auto;
+    height: fit-content;
     object-fit: contain;
-    margin: 0 1em 0 1em;
     border-radius: 1em;
     flex: 1 1;
 }
@@ -37,6 +37,5 @@
     }
     .row > img {
         width: 100%;
-        margin: 1em 0 1em 0;
     }
 }
