@@ -111,7 +111,10 @@ export default function ProjectCard({name, img, Content, onUpdate}) {
             Back
         </button>
 
-        codeSwitch = <Switch onClick={() => {setDevMode(!devMode)}} active={devMode}/>
+        codeSwitch = <div className={styles.codeSwitchContainer}>
+            Dev Mode:
+            <Switch onClick={() => {setDevMode(!devMode)}} active={devMode}/>
+        </div>
     }
 
     return <div className={styles.projectCardScaffold} ref={card}>

@@ -1,33 +1,33 @@
 .switch {
-    position: absolute;
     display: flex;
     background-color: whitesmoke;
-    top: 5%;
-    right: 5%;
-    height: 0.8em;
-    width: 1.6em;
+
+    height: 1em;
+    width: 2.2em;
     padding: 0;
-    border-radius: 0.5em;
-    border: medium solid lightgray;
+    border-radius: 0.7em;
+    border: 0.2em solid lightgray;
     animation: popIn 0.5s;
     overflow: hidden;
+
+    box-shadow: 0.2em 0.2em 0.2em gray;
 }
 .on {
     flex: 1 0;
 }
 .off {
-    flex: 0 0 0.35em;
+    flex: 0 0 0.5em;
 }
 .backing {
     transition-property: flex;
-    transition-duration: 0.5s;
-    margin-right: -0.4em;
+    transition-duration: 0.3s;
+    margin-right: -0.5em;
     background-color: deepskyblue;
 }
 .knob {
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 0.4em;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
     background-color: white;
 }
 .knob:hover {
