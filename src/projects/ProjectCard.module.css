@@ -71,7 +71,6 @@
 }
 .codeSwitchContainer {
     display: flex;
-
     gap: 0.5em;
 
     font-size: x-large;
@@ -79,18 +78,25 @@
     position: absolute;
     top: 5%;
     right: 5%;
+
+    animation: popIn 0.5s;
+    transition: opacity .75s ease-in-out;
 }
 
 .backButton {
     position: absolute;
     top: 5%;
     left: 5%;
-    animation: popIn 0.5s;
+
     padding: 0.5em;
     font-size: large;
     border-radius: 0.5em;
     border: none;
     background: white;
+    box-shadow: gray 0.1em 0.1em 0.5em;
+
+    animation: popIn 0.5s;
+    transition: opacity .75s ease-in-out;
 }
 .backButton:hover {
     background: #E0E0FF;

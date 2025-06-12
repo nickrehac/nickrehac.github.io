@@ -96,9 +96,12 @@ export default function ProjectCard({name, img, Content, onUpdate}) {
 
     let backButton
     let codeSwitch
-    if(open) {
+    if(open || closing) {
+        let manualButtonsStyle = closing ? {opacity: 0} : {}
+
         backButton = <button
-            className={styles.backButton} onClick={() => {
+            className={styles.backButton}
+            onClick={() => {
                 updateScaffold()
                 setAnimState("closing")
                 onUpdate("closing")
@@ -107,15 +110,21 @@ export default function ProjectCard({name, img, Content, onUpdate}) {
                 }, ANIM_DURATION * 1000)
                 setTimeout(updateScaffold, 10)
             }}
+            style={manualButtonsStyle}
         >
             Back
         </button>
 
-        codeSwitch = <div className={styles.codeSwitchContainer}>
+        codeSwitch = <div
+            className={styles.codeSwitchContainer}
+            style={manualButtonsStyle}
+        >
             Dev Mode:
             <Switch onClick={() => {setDevMode(!devMode)}} active={devMode}/>
         </div>
     }
+
+
 
     return <div className={styles.projectCardScaffold} ref={card}>
         <div
