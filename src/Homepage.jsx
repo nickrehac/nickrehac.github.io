@@ -24,13 +24,14 @@ const projects = [
 ]
 function Homepage() {
     const [hideExtras, setHideExtras] = useState(false)
+    const [fluidActive, setFluidActive] = useState(true)
 
     let fluidElement
     let profileElement
     let minesweeperElement
 
     if(!hideExtras) {
-        fluidElement = <FluidCanvas/>
+        fluidElement =
 
         profileElement = <div className={styles.profile}>
             Nicholas Rehac
@@ -45,7 +46,7 @@ function Homepage() {
     }
 
     return <>
-        {fluidElement}
+        <FluidCanvas active={fluidActive}/>
         <div className={styles.homepage}>
             {profileElement}
             <div className={"card " + styles.projectContainer}>
@@ -59,10 +60,14 @@ function Homepage() {
                             img={it[1]}
                             //open={openProject === index}
                             onUpdate={(state) => {
-                                if (state === "open") {
+                                if(state === "opening") {
+                                    setFluidActive(false)
+                                } else if (state === "open") {
                                     setHideExtras(true)
                                 } else if (state === "closing") {
                                     setHideExtras(false)
+                                } else if(state === "closed") {
+                                    setFluidActive(true)
                                 }
                             }}
                             key={index}

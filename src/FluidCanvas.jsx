@@ -3,7 +3,7 @@ import {useEffect, useRef, useState} from "react"
 const cellSize = 15
 const pullCoefficient = cellSize
 const drawLines = false
-const initSolverSteps = 3
+const initSolverSteps = 1
 
 const cold = [250,250,250]
 const medium = [0, 190, 255]
@@ -273,7 +273,7 @@ function FluidSim (canvasWidth, canvasHeight) {
     }
 }
 
-export default function FluidCanvas() {
+export default function FluidCanvas({active}) {
     const canvas = useRef(null)
     const prevTouches = useRef([])
     const [width, setWidth] = useState(innerWidth)
@@ -294,10 +294,6 @@ export default function FluidCanvas() {
             sim.current.resize(innerWidth, innerHeight)
         }
 
-        let canvasResizeHandler = () => {
-
-        }
-
         let mouseMoveHandler = (e) => {
             sim.current.applyVelocity(e.x, e.y, e.movementX, e.movementY)
         }
@@ -315,23 +311,28 @@ export default function FluidCanvas() {
             }
         }
 
-        window.addEventListener("mousemove", mouseMoveHandler)
-        window.addEventListener("resize", resizeHandler)
-        window.addEventListener("touchmove", touchMoveHandler)
 
-        let updater = setInterval(() => {
-            let start = Date.now()
-            sim.current.correctDivergence()
-            sim.current.advect(0.05)
-            sim.current.correctDivergence()
-            sim.current.setBoundary()
-            sim.current.draw(ctx)
-            let end = Date.now()
-            let duration = end-start
-            if(duration > 50 && sim.current.solverSteps > 1) sim.current.solverSteps--
-            if(duration < 30) sim.current.solverSteps++
-            //console.log("duration: " + duration + "  solveSteps: " + sim.solverSteps)
-        }, 50)
+        window.addEventListener("resize", resizeHandler)
+
+        let updater
+
+        if(active) {
+            window.addEventListener("mousemove", mouseMoveHandler)
+            window.addEventListener("touchmove", touchMoveHandler)
+            updater = setInterval(() => {
+                let start = Date.now()
+                sim.current.correctDivergence()
+                sim.current.advect(0.05)
+                sim.current.correctDivergence()
+                sim.current.setBoundary()
+                sim.current.draw(ctx)
+                let end = Date.now()
+                let duration = end-start
+                if(duration > 50 && sim.current.solverSteps > 1) sim.current.solverSteps--
+                if(duration < 30) sim.current.solverSteps++
+                //console.log("duration: " + duration + "  solveSteps: " + sim.solverSteps)
+            }, 50)
+        }
 
 
         console.log("registered handlers")
@@ -344,7 +345,7 @@ export default function FluidCanvas() {
 
             console.log("deregistered handlers")
         }
-    }, [])
+    }, [active])
 
     return <canvas ref={canvas} width={width} height={height} className="fluidCanvas"/>
 }

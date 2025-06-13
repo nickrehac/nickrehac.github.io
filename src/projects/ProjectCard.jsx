@@ -91,7 +91,10 @@ export default function ProjectCard({name, img, Content, onUpdate}) {
         manualCardStyle = {
             transitionDuration: "0s"
         }
-        setTimeout(() => setAnimState("closed"),50)
+        setTimeout(() => {
+            setAnimState("closed")
+            onUpdate("closed")
+        },50)
     }
 
     let backButton
