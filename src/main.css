@@ -18,9 +18,9 @@ body {
 }
 .card {
     background: white;
-    border: thin solid gray;
-    border-radius: 1em;
-    box-shadow: gray .5em .5em 1em;
+    /*border: thin solid gray;*/
+    border-radius: 0.5em;
+    box-shadow: gray .5em .5em 2em;
     padding: 1.5em;
     font-size: large;
 }
