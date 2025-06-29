@@ -6,6 +6,11 @@
     padding: 0 5em 0 5em;
 }
 
+a {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+
 .row {
     flex: 1 1 8px;
     display: flex;
@@ -14,7 +19,7 @@
     gap: 1em;
 }
 .row > p {
-    text-indent: 2em;
+    text-indent: 2em each-line;
     display: inline-block;
     width: auto;
     height: auto;
@@ -26,6 +31,9 @@
     object-fit: contain;
     border-radius: 1em;
     flex: 1 1;
+}
+.row > img.vertical {
+    flex: 0.5 1;
 }
 
 @media (max-aspect-ratio: 3/2) {
