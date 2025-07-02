@@ -1,12 +1,12 @@
 import styles from "./NotFoundPage.module.css"
+import "./main.css"
+import { createRoot } from "react-dom/client";
 
-function NotFoundPage() {
-    return <div className={styles.notFoundCard + " card"}>
+createRoot(document.getElementById('root')).render(
+    <div className={styles.notFoundCard + " card"}>
         Page Not Found.
         <br/>
         <br/>
         <a href="/">Go Back</a>
     </div>
-}
-
-export default NotFoundPage;
+)
