@@ -78,6 +78,14 @@
     background-color: lightskyblue;
     display: inline-block;
 }
+.chatImage > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 1.5em;
+    background-color: lightskyblue;
+    display: inline-block;
+}
 
 .chatPreviewText {
     flex-grow: 1;

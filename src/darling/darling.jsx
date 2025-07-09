@@ -21,12 +21,16 @@ createRoot(document.getElementById('root')).render(
 )
 
 /*
-* kiss-a-kiya
 * favorite pics
 * favorite moments
-* taylor swift
-* kiya photocard opener
-* harry styles
+*
 * 8-ball
+*
 * celebrity texts
+* kiya photocard opener
+* kiss-a-kiya
+*
+* billie
+* skz
+* faye
 * */

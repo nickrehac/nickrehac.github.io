@@ -1,11 +1,23 @@
 import styles from "./Phone.module.css"
 import {useContext, useEffect, useState} from "react";
 import arianaCake from "./messageImages/arianacake.jpg"
+import arianaFace from "./messageImages/arianaFace.jpg"
+import beyCake from "./messageImages/beyonceCake.webp"
 
 
 const chats = [
     {
+        name: "Queen Bey",
+        pic: arianaFace,
+        messages: [
+            "Happy Birthday to my girl Kiya!",
+            [<img src={beyCake}/>, "Make a wish!"]
+        ],
+        visibleMessages: []
+    },
+    {
         name: "Ari",
+        pic: arianaFace,
         messages: [
             "Happy Birthday to my favorite girl in the world!",
             "God is a woman",
@@ -17,11 +29,15 @@ const chats = [
     },
     {
         name: "Harry",
-        messages: [],
+        pic: arianaFace,
+        messages: [
+            "Oi oi oi its me harry styles"
+        ],
         visibleMessages: []
     },
     {
-        name: "1D4L",
+        name: "",
+        pic: arianaFace,
         messages: [],
         visibleMessages: []
     }
@@ -34,10 +50,15 @@ export default function Phone() {
 
     let screenContent
 
-    if(openChat !== null) screenContent = <ChatPage chat={openChat} onClose={() => setOpenChat(null)}/>
+    let mobileMode = false
+
+    if (openChat !== null) screenContent = <ChatPage chat={openChat} onClose={() => setOpenChat(null)}/>
     else screenContent = <ListPage onClick={(m) => setOpenChat(m)}/>
 
-    return <div className={styles.phoneModal}>
+    if (mobileMode) return <div className={styles.screen}>
+        {screenContent}
+    </div>
+    else return <div className={styles.phoneModal}>
         <div className={styles.deviceBorder1}>
             <div className={styles.deviceBorder2}>
                 <div className={styles.screen}>
@@ -52,7 +73,7 @@ export default function Phone() {
 function ChatListing({chat, onClick}) {
     return <div className={styles.chatListing} onClick={() => onClick(chat)}>
         <div className={styles.chatImage}>
-
+            <img src={chat.pic}/>
         </div>
         <div className={styles.chatPreviewText}>
             {chat.name}
@@ -122,7 +143,9 @@ function ChatPage({chat, onClose}) {
     return <div className={styles.chatPage}>
         <div className={styles.chatHeader}>
             <div className={styles.chatBackButton} onClick={onClose}>&lt;</div>
-            <div className={styles.chatImage}/>
+            <div className={styles.chatImage}>
+                <img src={chat.pic}/>
+            </div>
             {chat.name}
         </div>
         <div className={styles.messageField}>
