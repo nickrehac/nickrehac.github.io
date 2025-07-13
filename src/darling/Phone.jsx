@@ -1,14 +1,19 @@
 import styles from "./Phone.module.css"
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import arianaCake from "./messageImages/arianacake.jpg"
 import arianaFace from "./messageImages/arianaFace.jpg"
 import beyCake from "./messageImages/beyonceCake.webp"
+import beyFace from "./messageImages/beyoncePfp.webp"
+import harryFace from "./messageImages/harryFace.webp"
+import harryCake from "./messageImages/harryCake.jpg"
+import fayeFace from "./messageImages/fayeFace.webp"
+import harryWeird from "./messageImages/harryWeird.jpg"
 
 
 const chats = [
     {
         name: "Queen Bey",
-        pic: arianaFace,
+        pic: beyFace,
         messages: [
             "Happy Birthday to my girl Kiya!",
             [<img src={beyCake}/>, "Make a wish!"]
@@ -20,8 +25,8 @@ const chats = [
         pic: arianaFace,
         messages: [
             "Happy Birthday to my favorite girl in the world!",
-            "God is a woman",
-            "but girl ur a goddess",
+            "God is a woman...",
+            "...but girl ur a goddess",
             [<img src={arianaCake}/>, "My honest reaction to it being ur birthday"],
             "What's wrong with a little bit of poison? Get crunk tonight!"
         ],
@@ -29,39 +34,47 @@ const chats = [
     },
     {
         name: "Harry",
-        pic: arianaFace,
+        pic: harryFace,
         messages: [
-            "Oi oi oi its me harry styles"
+            "Oi oi oi its me harry styles",
+            <img src={harryCake}/>,
+            <img src={harryWeird}/>
         ],
         visibleMessages: []
     },
     {
-        name: "",
-        pic: arianaFace,
-        messages: [],
+        name: "Faye",
+        pic: fayeFace,
+        messages: [
+            ""
+        ],
         visibleMessages: []
     }
 ]
 
 
-export default function Phone() {
+export default function Phone({onClose}) {
 
     const [openChat, setOpenChat] = useState(null)
 
     let screenContent
 
-    let mobileMode = false
+    let mobileMode = navigator.userAgent.match(/iPhone|iPad|iPod|Android/) !== null
 
     if (openChat !== null) screenContent = <ChatPage chat={openChat} onClose={() => setOpenChat(null)}/>
     else screenContent = <ListPage onClick={(m) => setOpenChat(m)}/>
 
-    if (mobileMode) return <div className={styles.screen}>
+    let closeButton = <div className={styles.closeButton} onClick={onClose}>X</div>
+
+    if (mobileMode) return <div className={styles.screen + " " + styles.mobile}>
+        {closeButton}
         {screenContent}
     </div>
-    else return <div className={styles.phoneModal}>
+
+    else return <div className={styles.phoneModal} onClick={onClose}>
         <div className={styles.deviceBorder1}>
             <div className={styles.deviceBorder2}>
-                <div className={styles.screen}>
+                <div className={styles.screen} onClick={(e) => e.stopPropagation()}>
                     {screenContent}
                 </div>
             </div>

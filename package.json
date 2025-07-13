@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev_exposed": "vite --host",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
