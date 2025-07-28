@@ -6,6 +6,7 @@ import Phone from "./Phone.jsx";
 import TextNotification from "./TextNotification.jsx";
 
 import jigsaw from "./images/jigsaw.png"
+import CardOpener from "./CardOpener.jsx";
 
 
 createRoot(document.getElementById('root')).render(
@@ -40,6 +41,10 @@ function Main() {
             <br/>
             <img className={styles.jigsaw} src={jigsaw} alt="jigsaw"/>
         </div>
+
+        <CardOpener/>
+
+        shazam
 
         {showPhone && <Phone onClose={() => setShowPhone(false)}/>}
     </>

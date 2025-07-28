@@ -1,0 +1,96 @@
+.cardOpener {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-bottom: 20em;
+    margin-right: auto;
+    margin-left: auto;
+    width: fit-content;
+    max-width: 50%;
+
+    border: grey solid 1px;
+    border-radius: 1em;
+}
+
+.card{
+    position: relative;
+    width: min-content;
+    height: min-content;
+    box-sizing: border-box;
+    border-radius: 0.5em;
+
+    box-shadow: grey 0 0 2em;
+
+    margin: 1em;
+
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+
+    animation: pop-in 0.3s;
+}
+
+.cardFront {
+    background-color: red;
+    width: min-content;
+    padding: 1em;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0.5em;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.cardFront > img{
+    width: auto;
+    height: 20em;
+    object-fit: contain;
+    border-radius: 0.25em;
+}
+
+.cardBack{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: blue;
+    backface-visibility: hidden;
+    border-radius: 0.5em;
+    transform: rotateY(180deg);
+    top:0;
+    left:0;
+}
+
+.cardCollection {
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    place-items: center;
+}
+
+.cardButton {
+    background-color: green;
+    border-radius: 0.5em;
+    padding: 1em;
+    box-shadow: grey 1em 1em 2em;
+    width: fit-content;
+    margin: 2em;
+}
+
+.flipped{
+    transform: rotateY(180deg);
+}
+
+@keyframes pop-in {
+    from {
+        scale: 0;
+    }
+
+    to {
+        scale: 1;
+    }
+}

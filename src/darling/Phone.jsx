@@ -1,5 +1,5 @@
 import styles from "./Phone.module.css"
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import arianaCake from "./messageImages/arianacake.jpg"
 import arianaFace from "./messageImages/arianaFace.jpg"
 import beyCake from "./messageImages/beyonceCake.webp"
@@ -16,7 +16,9 @@ const chats = [
         pic: beyFace,
         messages: [
             "Happy Birthday to my girl Kiya!",
-            [<img src={beyCake}/>, "Make a wish!"]
+            [<img src={beyCake}/>, "Make a wish!"],
+            "Make sure to share it! dont be a tyrant",
+            "Nick told me to say that don't hold it against me"
         ],
         visibleMessages: []
     },
@@ -36,9 +38,10 @@ const chats = [
         name: "Harry",
         pic: harryFace,
         messages: [
-            "Oi oi oi its me harry styles",
-            <img src={harryCake}/>,
-            <img src={harryWeird}/>
+            "Hi kiya! I heard its your birthday so i had to say hi",
+            [<img src={harryCake}/>, "I brought you a cake!"],
+            "I sure hope no one else posed with a cake",
+            [<img src={harryWeird}/>, "Also, nick told me you really like this pic of me, so here you go!"]
         ],
         visibleMessages: []
     },
@@ -46,7 +49,7 @@ const chats = [
         name: "Faye",
         pic: fayeFace,
         messages: [
-            ""
+            "Cheers!"
         ],
         visibleMessages: []
     }
@@ -135,6 +138,9 @@ function Message({message}) {
 function ChatPage({chat, onClose}) {
     const [dummy, setDummy] = useState(0)
 
+    const scrollArea = useRef(null);
+
+
     let nextMessage = function() {
         if(chat.messages.length === chat.visibleMessages.length) return
 
@@ -143,6 +149,8 @@ function ChatPage({chat, onClose}) {
     }
 
     useEffect(() => {
+        if(scrollArea.current) scrollArea.current.scrollTo({left: 0, top: scrollArea.current.scrollHeight, behavior: "smooth"})
+
         let timeout
         if(dummy === 0) timeout = 20
         else if(dummy === 1) timeout = 700
@@ -161,7 +169,7 @@ function ChatPage({chat, onClose}) {
             </div>
             {chat.name}
         </div>
-        <div className={styles.messageField}>
+        <div className={styles.messageField} ref={scrollArea}>
             {chat.visibleMessages.map((message) => <Message
                 message={message}
                 key={message}
