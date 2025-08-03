@@ -7,6 +7,7 @@ import TextNotification from "./TextNotification.jsx";
 
 import jigsaw from "./images/jigsaw.png"
 import CardOpener from "./CardOpener.jsx";
+import KissKiya from "./KissKiya.jsx";
 
 
 createRoot(document.getElementById('root')).render(
@@ -44,7 +45,9 @@ function Main() {
 
         <CardOpener/>
 
-        shazam
+        <KissKiya/>
+
+        <br/>
 
         {showPhone && <Phone onClose={() => setShowPhone(false)}/>}
     </>

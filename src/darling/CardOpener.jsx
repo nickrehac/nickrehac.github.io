@@ -11,6 +11,9 @@ import partygirl from "./images/partygirl.jpg"
 import pout from "./images/pout.jpg"
 import pout2 from "./images/pout2.jpg"
 import theOG from "./images/theOG.jpg"
+import glasses1 from "./images/glasses 1.jpg"
+import glasses2 from "./images/glasses 2.jpg"
+import glasses3 from "./images/glasses 3.jpg"
 
 const cards = [
     {
@@ -44,6 +47,18 @@ const cards = [
     {
         name: "My Kiya <3",
         image: theOG
+    },
+    {
+        name: "Nerdy Kiya 1",
+        image: glasses1
+    },
+    {
+        name: "Nerdy Kiya 2",
+        image: glasses2
+    },
+    {
+        name: "Nerdy Kiya 3",
+        image: glasses3
     }
 ]
 

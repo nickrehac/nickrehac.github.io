@@ -17,7 +17,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src", "index.html"),
         notfound: resolve(__dirname, "src", "404.html"),
-        darling: resolve(__dirname, "src", "darling", "index.html")
+        darling: resolve(__dirname, "src", "darling.html")
       }
     }
   }

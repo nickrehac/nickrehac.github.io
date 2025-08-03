@@ -8,6 +8,7 @@ import harryFace from "./messageImages/harryFace.webp"
 import harryCake from "./messageImages/harryCake.jpg"
 import fayeFace from "./messageImages/fayeFace.webp"
 import harryWeird from "./messageImages/harryWeird.jpg"
+import billieFace from "./messageImages/billieFace.webp"
 
 
 const chats = [
@@ -50,6 +51,14 @@ const chats = [
         pic: fayeFace,
         messages: [
             "Cheers!"
+        ],
+        visibleMessages: []
+    },
+    {
+        name: "Billie",
+        pic: billieFace,
+        messages: [
+            "Open up the door"
         ],
         visibleMessages: []
     }
