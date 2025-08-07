@@ -10,6 +10,10 @@ const questions = [
     ["Should Kiya ever stop yapping?", "No"],
     ["Will Kiya and Nick live together with two kids, a dog, and a cat in a few years?", "Yes"],
     ["Will Miguel propose to Kiya?", "No"],
+    ["Will Kiya and Nick live together forever?", "Yes"],
+    ["Will all of Kiya's birthday wishes come true?", "Yes"],
+    ["Who is the luckiest guy in the world?", "Nick"],
+    ["", "Miguel"],
     ["","Nick"],
     ["","Nick"],
 ]
