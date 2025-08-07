@@ -8,6 +8,7 @@ import TextNotification from "./TextNotification.jsx";
 import jigsaw from "./images/jigsaw.png"
 import CardOpener from "./CardOpener.jsx";
 import KissKiya from "./KissKiya.jsx";
+import EightBall from "./EightBall.jsx";
 
 
 createRoot(document.getElementById('root')).render(
@@ -28,7 +29,7 @@ function Main() {
         return () => clearTimeout(timoutID)
     }, []);
 
-    return <>
+    return <div className={styles.main}>
         {showNotification &&
             <TextNotification onClick={() => setShowPhone(true)}/>
         }
@@ -36,7 +37,7 @@ function Main() {
         <div className={styles.sawRant}>
             HAPPY BIRTHDAY MY LOVE!
             <br/>
-            I HAVE SOME GAMES FOR YOU TO PLAY
+            I HAVE SOME THINGS FOR YOU TO SEE
             <br/>
             MUAHHAHAHAHAHAHAHA
             <br/>
@@ -47,10 +48,12 @@ function Main() {
 
         <KissKiya/>
 
+        <EightBall/>
+
         <br/>
 
         {showPhone && <Phone onClose={() => setShowPhone(false)}/>}
-    </>
+    </div>
 }
 
 /*

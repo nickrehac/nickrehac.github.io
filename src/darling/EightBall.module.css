@@ -1,0 +1,71 @@
+.eightBall {
+    width: min-content;
+    padding: 1em;
+    border-radius: 0.5em;
+    box-shadow: black 0 0 1em;
+    margin: 5em 5em 15em 5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.eightBall div{
+    width: max-content;
+}
+
+.newQuestion {
+    border-radius: 1em;
+    padding: 1em;
+    user-select: none;
+    background-color: yellow;
+    margin: 1em;
+}
+
+.active:hover {
+    cursor: pointer;
+}
+
+
+
+.question {
+    margin: 1em;
+}
+
+.answer {
+    background-color: lightgreen;
+    color: black;
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: grey 0 0 1em;
+    margin: 5em;
+}
+
+.getAnswer {
+    border-radius: 1em;
+    user-select: none;
+    background-color: lightgreen;
+    padding: 1em;
+}
+
+.inactive {
+    background-color: lightgray;
+}
+
+.wiggle {
+    animation: wiggle 0.5s infinite;
+}
+
+@keyframes wiggle {
+    25% {
+        rotate: 5deg;
+        background-color: yellow;
+    }
+    50% {
+        background-color: red;
+    }
+    75% {
+        rotate: -5deg;
+        background-color: yellow;
+    }
+}

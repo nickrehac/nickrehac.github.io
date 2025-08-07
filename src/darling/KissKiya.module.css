@@ -4,6 +4,7 @@
     height: 20em;
     border: darkgrey solid 1px;
     margin-top: 0.5em;
+
 }
 .kiya {
     position: absolute;
@@ -19,10 +20,10 @@
 .kissKiyaContainer {
     font-size: large;
     width: min-content;
-    margin-left: auto;
-    margin-right: auto;
     border-radius: 1em;
     text-align: center;
     padding: 1em;
-    box-shadow: darkgrey 0 0 1em;
+    box-shadow: black 0 0 1em;
+    margin: 5em;
+    background-color: white;
 }

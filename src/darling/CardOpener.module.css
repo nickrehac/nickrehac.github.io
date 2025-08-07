@@ -3,13 +3,12 @@
     flex-direction: column;
     align-items: center;
 
-    margin-bottom: 20em;
-    margin-right: auto;
-    margin-left: auto;
+    background-color: white;
+
+    margin: 5em;
     width: fit-content;
     max-width: 75%;
-
-    border: grey solid 1px;
+    box-shadow: black 0 0 1em;
     border-radius: 1em;
 }
 
@@ -75,12 +74,13 @@
 }
 
 .cardButton {
-    background-color: green;
+    background-color: lightgreen;
     border-radius: 0.5em;
     padding: 1em;
     box-shadow: grey 1em 1em 2em;
     width: fit-content;
     margin: 2em;
+    user-select: none;
 }
 
 .cardButton:hover {

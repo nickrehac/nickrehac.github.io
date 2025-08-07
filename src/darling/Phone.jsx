@@ -50,7 +50,11 @@ const chats = [
         name: "Faye",
         pic: fayeFace,
         messages: [
-            "Cheers!"
+            "Happy birthday to my girl kiya!",
+            "Ur so beautiful it makes me want to cry",
+            "But like",
+            "In a good way",
+            "Anyway, Cheers!"
         ],
         visibleMessages: []
     },
@@ -58,7 +62,11 @@ const chats = [
         name: "Billie",
         pic: billieFace,
         messages: [
-            "Open up the door"
+            "Happy birthday Kiya!!",
+            "Did Youu-ouu-ouu-ouu-ouu",
+            "Maa-aa-aa-aaake",
+            "Your Bir-ir-irth-day wish",
+            "Today-ayy-ayy-ayy"
         ],
         visibleMessages: []
     }
@@ -162,8 +170,7 @@ function ChatPage({chat, onClose}) {
 
         let timeout
         if(dummy === 0) timeout = 20
-        else if(dummy === 1) timeout = 700
-        else timeout = 1000 + 1000*Math.random()
+        else timeout = 2000 + 1000*Math.random()
 
         let timer = setTimeout(nextMessage, timeout)
         return () => clearTimeout(timer)
