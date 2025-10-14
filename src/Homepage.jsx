@@ -17,22 +17,19 @@ import FluidCanvas from "./FluidCanvas.jsx";
 import Minesweeper from "./minesweeper/Minesweeper.jsx";
 
 const projects = [
-    ["Chess", whiteQueen, Chess],
-    ["File Compression", compressionLogo, Compression],
     ["AsciiGL", fish, AsciiGL],
-    ["No Man's Sky Companion App", NMSLogo, NMS]
+    ["No Man's Sky Companion App", NMSLogo, NMS],
+    ["Chess", whiteQueen, Chess],
+    ["File Compression", compressionLogo, Compression]
 ]
 function Homepage() {
     const [hideExtras, setHideExtras] = useState(false)
     const [fluidActive, setFluidActive] = useState(true)
 
-    let fluidElement
     let profileElement
     let minesweeperElement
 
     if(!hideExtras) {
-        fluidElement =
-
         profileElement = <div className={styles.profile}>
             Nicholas Rehac
             <br/>

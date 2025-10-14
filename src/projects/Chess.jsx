@@ -1,6 +1,11 @@
 import styles from "./ProjectPages.module.css";
+import UnderConstruction from "./UnderConstruction.jsx";
 
 export default function Chess({devMode}) {
+    return <div className={styles.content}>
+        <UnderConstruction/>
+    </div>
+    /*
     if(devMode) return <div className={styles.content}>
         PLACEHOLDER
     </div>
@@ -11,4 +16,5 @@ export default function Chess({devMode}) {
             </p>
         </div>
     </div>
+    */
 }
