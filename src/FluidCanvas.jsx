@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react"
 
-const cellSize = 15
+const cellSize = 10
 const pullCoefficient = cellSize
 const drawLines = false
 const initSolverSteps = 1
@@ -48,30 +48,41 @@ function FluidSim (canvasWidth, canvasHeight) {
             })
         })
     this.solverSteps = initSolverSteps
+    this.tmpCanvas = this.tmpCanvas = document.createElement("canvas")
+    this.tmpCanvas.width = this.width*cellSize
+    this.tmpCanvas.height = this.height*cellSize
 
-    this.draw = function(ctx) {
+    this.draw = function() {
+        let tmpCtx = this.tmpCanvas.getContext("2d")
+
         for(let y = 0; y < this.height; y++) {
             for(let x = 0; x < this.width; x++) {
                 let curCell = this.cells[y][x]
                 let color = curCell.color()
-                ctx.fillStyle = `rgb(${color[0]} ${color[1]} ${color[2]})`;
-                ctx.fillRect(x*cellSize, y*cellSize, cellSize, cellSize)
+                tmpCtx.fillStyle = ["rgb(" + color[0], color[1], color[2] + ")"].join(" ")
+                tmpCtx.fillRect(x*cellSize, y*cellSize, cellSize, cellSize)
             }
         }
+
         if(drawLines) {
             const vectorLength = 1
-            ctx.strokeStyle = "black"
-            ctx.lineWidth = 2
+            tmpCtx.strokeStyle = "black"
+            tmpCtx.lineWidth = 2
             for (let y = 0; y < this.height; y++) {
                 for (let x = 0; x < this.width; x++) {
                     let curCell = this.cells[y][x]
-                    ctx.beginPath()
-                    ctx.moveTo((x + 0.5) * cellSize, (y + 0.5) * cellSize)
-                    ctx.lineTo((x + 0.5) * cellSize + vectorLength * curCell.velocity[0], (y + 0.5) * cellSize + vectorLength * curCell.velocity[1])
-                    ctx.stroke()
+                    tmpCtx.beginPath()
+                    tmpCtx.moveTo((x + 0.5) * cellSize, (y + 0.5) * cellSize)
+                    tmpCtx.lineTo((x + 0.5) * cellSize + vectorLength * curCell.velocity[0], (y + 0.5) * cellSize + vectorLength * curCell.velocity[1])
+                    tmpCtx.stroke()
                 }
             }
         }
+
+
+    }
+    this.pushFrame = function(ctx) {
+        ctx.drawImage(this.tmpCanvas,0,0)
     }
 
     this.applyVelocity = function(x, y, vX, vY) {
@@ -325,12 +336,20 @@ export default function FluidCanvas({active}) {
                 sim.current.advect(0.05)
                 sim.current.correctDivergence()
                 sim.current.setBoundary()
-                sim.current.draw(ctx)
+                sim.current.draw()
                 let end = Date.now()
                 let duration = end-start
-                if(duration > 50 && sim.current.solverSteps > 1) sim.current.solverSteps--
-                if(duration < 30) sim.current.solverSteps++
-                //console.log("duration: " + duration + "  solveSteps: " + sim.solverSteps)
+                if(duration > 50 && sim.current.solverSteps > 1) {
+                    sim.current.solverSteps--
+                    console.log("  solveSteps: " + sim.current.solverSteps)
+                }
+                if(duration < 40) {
+                    sim.current.solverSteps++
+                    console.log("  solveSteps: " + sim.current.solverSteps)
+                }
+                requestAnimationFrame(() => {
+                    sim.current.pushFrame(ctx)
+                })
             }, 50)
         }
 

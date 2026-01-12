@@ -41,8 +41,8 @@ div.homepage {
     animation: slideIn 1s;
 }
 .profile img {
-    width: 5em;
-    height: 5em;
+    width: auto;
+    height: 7em;
     border-radius: 0.5em;
     border-color: lightskyblue;
     border-style: solid;

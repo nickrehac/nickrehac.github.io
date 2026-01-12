@@ -5,7 +5,7 @@ import NMSLogo from "./assets/NMSLogo.webp"
 import fish from "./assets/fish.png"
 import compressionLogo from "./assets/compressionLogo.svg"
 
-import profilePic from "./assets/1000007292.jpg"
+import profilePic from "./assets/profile.png"
 
 import ProjectCard from "./projects/ProjectCard";
 import {useState} from "react";
